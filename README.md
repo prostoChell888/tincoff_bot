@@ -1,1 +1,0 @@
-# tincoff_bot
