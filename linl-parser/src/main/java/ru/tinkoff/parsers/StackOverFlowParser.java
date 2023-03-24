@@ -9,11 +9,10 @@ import java.util.regex.Pattern;
 
 public final class StackOverFlowParser extends BaseParser{
 
-
+    private static Pattern regex = Pattern.compile("^/questions/(\\d+)/.*$");
     @Override
     public ParseResponse parse(URI url) {
         if (url.getHost().equals("stackoverflow.com")){
-            Pattern regex = Pattern.compile("^/questions/(\\d+)/.*$");
             Matcher matcher = regex.matcher(url.getPath());
             if (matcher.matches()){
                 return new StackOverflowResponse( Integer.parseInt(matcher.group(1)));
