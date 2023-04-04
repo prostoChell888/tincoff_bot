@@ -9,8 +9,5 @@ import ru.tinkoff.scrapper.util.Scheduler;
 
 @Validated
 @ConfigurationProperties(prefix = "scrapper", ignoreUnknownFields = false)
-@EnableScheduling
 public record ApplicationConfig(@NotNull String test, @NotNull Scheduler scheduler) {
-
-
 }
