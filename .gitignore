@@ -19,6 +19,7 @@
 *.zip
 *.tar.gz
 *.rar
+*.iml
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -75,6 +76,8 @@ buildNumber.properties
 # .idea/modules
 # *.iml
 # *.ipr
+
+*/src/main/resources/application.properties
 
 # CMake
 cmake-build-*/
