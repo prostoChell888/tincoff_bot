@@ -1,18 +1,19 @@
-version: '3.9'
+version: "3.9"
+
 services:
   postgresql:
-    image: postgres:15
-    container_name: scrapper-postgres
+    container_name: scrapper_db
+    image: postgres:15-alpine
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
-      - POSTGRES_DB=scrapper
+      - POSTGRES_PASSWORD=testdb
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=scrapper
+    volumes:
+      - scrapper_db_data:/var/lib/postgresql/data
     networks:
       - backend
-    volumes:
-      - scrapper-postgres:/var/lib/postgesql/data
 
   liquibase-migrations:
     image: liquibase/liquibase:4.18
@@ -23,8 +24,8 @@ services:
       - --changelog-file=master.xml
       - --driver=org.postgresql.Driver
       - --url=jdbc:postgresql://postgresql:5432/scrapper
-      - --username=...
-      - --password=...
+      - --username=postgres
+      - --password=testdb
       - update
     volumes:
       - ./migrations:/liquibase/changelog
