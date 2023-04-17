@@ -3,7 +3,7 @@ package ru.tinkoff.scrapper.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import ru.tincoff.exeptios.types.BadRequestException;
+import ru.tincoff.exeptios.BadRequestException;
 import ru.tinkoff.scrapper.util.validation.anotations.Id;
 
 @Service

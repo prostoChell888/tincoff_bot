@@ -2,6 +2,7 @@ package ru.tinkoff.scrapper.dto.responce.stackOverflowe;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.net.URI;
 import java.time.OffsetDateTime;
 
 public record StackOverFlowResponse(
@@ -13,5 +14,5 @@ public record StackOverFlowResponse(
         int viewCount,
         @JsonProperty("creation_date")
         OffsetDateTime creationDate,
-        String link
+        URI link
         ) {}

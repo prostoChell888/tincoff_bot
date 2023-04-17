@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import ru.tincoff.exeptios.types.NotFoundException;
+import ru.tincoff.exeptios.NotFoundException;
 import ru.tinkoff.scrapper.clients.GitHubClient;
 import ru.tinkoff.scrapper.dto.request.GitGubRepRequest;
 import ru.tinkoff.scrapper.dto.responce.GitHubResponse;

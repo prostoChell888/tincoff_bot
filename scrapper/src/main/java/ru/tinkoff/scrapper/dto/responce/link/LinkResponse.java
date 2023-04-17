@@ -1,4 +1,6 @@
 package ru.tinkoff.scrapper.dto.responce.link;
 
-public record LinkResponse(Long id, String url) {
+import java.net.URI;
+
+public record LinkResponse(Long id, URI url) {
 }

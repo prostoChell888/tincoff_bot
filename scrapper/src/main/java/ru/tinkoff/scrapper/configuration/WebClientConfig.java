@@ -9,23 +9,28 @@ import ru.tinkoff.scrapper.clients.StackOverflowClient;
 
 @Configuration
 public class WebClientConfig {
-    @Value("${url.gitHub:https://api.github.com/}")
+    @Value("${url.gitHub}")
     private  String gitHubUrl;
 
-    @Value("${url.stackOverflow:https://api.stackexchange.com/2.3}")
+    @Value("${url.stackOverflow}")
     private  String stackOverflowUrl;
 
     @Bean
     GitHubClient gitHubClientClient() {
         return ClientFactory.createGitHubClient(gitHubUrl);
+//        return ClientFactory.createGitHubClient();
     }
 
     @Bean
     StackOverflowClient stackOverflowClientClient() {
         return ClientFactory.createStackOverflowClient(stackOverflowUrl);
+//        return ClientFactory.createStackOverflowClient();
     }
 
-
+    @Bean
+    public Long interval2(){
+        return 5000L;
+    }
 
 
 
