@@ -1,4 +1,4 @@
-package ru.tinkoff.scrapper.service;
+package ru.tinkoff.scrapper.service.client;
 
 
 import lombok.RequiredArgsConstructor;

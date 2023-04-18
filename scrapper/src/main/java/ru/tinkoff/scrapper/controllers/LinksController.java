@@ -6,13 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import ru.tincoff.exeptios.BadRequestException;
-import ru.tincoff.exeptios.NotFoundException;
 import ru.tinkoff.scrapper.dto.request.AddLinkRequest;
 import ru.tinkoff.scrapper.dto.responce.link.LinkResponse;
 import ru.tinkoff.scrapper.dto.responce.link.ListLinksResponse;
-import ru.tinkoff.scrapper.service.GitHubService;
-import ru.tinkoff.scrapper.service.LinksService;
-import ru.tinkoff.scrapper.service.StackOverFlowService;
+import ru.tinkoff.scrapper.service.jdbc.LinksServiceJDBC;
 
 import java.net.URISyntaxException;
 
@@ -21,45 +18,26 @@ import java.net.URISyntaxException;
 @RequiredArgsConstructor
 public class LinksController {
 
-    private final StackOverFlowService SOservice;
-
-    private final GitHubService gitHubService;
-
-    private final LinksService linksService;
+    private final LinksServiceJDBC linksService;
 
     @GetMapping
-    public ResponseEntity<ListLinksResponse> getAllTrackedLinks(@RequestHeader("Tg-Chat-Id") Long chatId) {
-        if (chatId.intValue() % 2 == 0) throw new BadRequestException("четный id");
+    public ListLinksResponse getAllTrackedLinks(@RequestHeader("Tg-Chat-Id") Long chatId) {
 
-        return linksService.getAllTrackedLinks(chatId);
+        return linksService.listAll(chatId);
     }
 
     @PostMapping
-    public ResponseEntity<LinkResponse> addLink(@RequestHeader("Tg-Chat-Id") Long chatId,
-                                                @RequestBody AddLinkRequest request) {
-        if (chatId.intValue() % 2 == 0) throw new BadRequestException("четный id");
+    public LinkResponse addLink(@RequestHeader("Tg-Chat-Id") Long chatId,
+                                @RequestBody AddLinkRequest request) {
 
-        return linksService.addLink(chatId, request);
+        return linksService.add(chatId, request);
     }
 
     @DeleteMapping
-    public ResponseEntity<LinkResponse> delLink(@RequestHeader("Tg-Chat-Id") Long chatId) throws URISyntaxException {
-        if (chatId.intValue() % 3 == 0) throw new BadRequestException("четный id");
-//        if (chatId.intValue() % 3 == 1) throw new NotFoundException("четный id");
+    public void delLink(@RequestHeader("Tg-Chat-Id") Long chatId) throws URISyntaxException {
 
-
-        return linksService.delLink(chatId);
+         linksService.remove(chatId);
     }
-
-//    @GetMapping("test")
-//    public Object test() {
-//
-////        return gitHubService.getRepInfo(new GitGubRepRequest("kubernetes", "kubernetes"));
-//       return SOservice.getQuestionInfo(49034588L);
-//
-//    }
-
-
 }
 
 

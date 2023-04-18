@@ -1,4 +1,4 @@
-package ru.tinkoff.scrapper.service;
+package ru.tinkoff.scrapper.service.client;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

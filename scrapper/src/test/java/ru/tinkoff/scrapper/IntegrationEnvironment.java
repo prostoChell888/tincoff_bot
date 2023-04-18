@@ -7,8 +7,8 @@ import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
-import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.DirectoryResourceAccessor;
+
 import org.testcontainers.containers.PostgreSQLContainer;
 
 import java.io.File;

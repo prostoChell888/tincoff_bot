@@ -3,24 +3,28 @@ package ru.tinkoff.scrapper.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.tinkoff.scrapper.service.TgChatService;
+import ru.tinkoff.scrapper.service.jdbc.TgChatServiceJDBC;
 
 @RestController
 @RequestMapping("/tg-chat")
 @RequiredArgsConstructor
 public class TgChatController {
 
-    private final TgChatService linksService;
+    private final TgChatServiceJDBC tgChatService;
+
+
+    @GetMapping("check")
+    public String check() {
+        return "ku";
+    }
 
     @PostMapping("{id}")
     public void addChat(@PathVariable Long id) {
-        linksService.addChat(id);
+        tgChatService.add(id);
     }
 
     @DeleteMapping("{id}")
     public void delChat(@PathVariable Long id) {
-        linksService.delChat(id);
+        tgChatService.removeByChatId(id);
     }
-
-
 }

@@ -1,4 +1,4 @@
-package ru.tinkoff.scrapper.service;
+package ru.tinkoff.scrapper.service.client;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @EnableScheduling
 public class LinkUpdaterScheduler {
 
-    @Scheduled(fixedDelayString = "#{@interval}")
-    public  void update(){
-        log.info("I did updating link");
-    }
+//    @Scheduled(fixedDelayString = "#{@interval}")
+//    public  void update(){
+//        log.info("I did updating link");
+//    }
 }
