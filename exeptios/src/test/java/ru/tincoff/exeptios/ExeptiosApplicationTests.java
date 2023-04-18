@@ -6,6 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class ExeptiosApplicationTests {
 
+
+
     @Test
     void contextLoads() {
     }
