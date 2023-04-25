@@ -8,6 +8,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class ChatEntity {
 
-private  Long id;
-    private  Long tgChatId;
+    private Long id;
+    private Long tgChatId;
 }
