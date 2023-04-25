@@ -14,7 +14,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
-public class LinkRepository {
+public interface LinkRepository {
     private final LinkMapper mapper = new LinkMapper();
 
     @Autowired
