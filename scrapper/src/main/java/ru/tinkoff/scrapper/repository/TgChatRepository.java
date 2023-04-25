@@ -1,57 +1,27 @@
 package ru.tinkoff.scrapper.repository;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 import ru.tinkoff.scrapper.enyity.ChatEntity;
-import ru.tinkoff.scrapper.enyity.mapers.UserMapper;
 
 import java.util.List;
 
+public interface TgChatRepository {
+    void add(Long tgChatId);
 
-@RequiredArgsConstructor
-@Repository
-public class TgChatRepository {
+    List<ChatEntity> findAll();
 
-    private final UserMapper mapper = new UserMapper();
-    @Autowired
-    private final JdbcTemplate template;
+    List<ChatEntity> findByTgChatId(Long tgChatId);
 
-    public Integer add(Long chatId) {
-        String sql = "INSERT INTO chat (tg_chat_id) VALUES (?)";
-        return template.update(sql, chatId);
-    }
+    List<ChatEntity> findById(Long id);
 
-    public List<ChatEntity> findAll() {
-        String sql = "SELECT * FROM chat";
-        return template.query(sql, mapper);
-    }
+    Long removeByTgChatId(Long tgChatId);
 
-    public List<ChatEntity> findById(Long tgChatId) {
-        String sql = "SELECT * FROM chat where tg_chat_id = ?";
-        return template.query(sql, mapper, tgChatId);
-    }
+    Long removeById(Long chatId);
 
-    public Integer removeByChatId(Long chatId) {
-        final  String sql = "delete from chat where chat_id = ?";
-        return template.update(sql, chatId);
-    }
+    Long updateById(Long id, Long tgChatId);
 
-    public Integer removeById(Long tgChatId) {
-        final  String sql = "delete from chat where tg_chat_id = ?";
-        return template.update(sql, tgChatId);
-    }
+    void utracedLinks(Long chatId);
 
+    List<Long> findChatByLinkId(Long linkId);
 
-    public Integer updateById(Long id, Long tgChatId) {
-        final  String sql = "update chat set chat_id = ? where tg_chat_id = ?";
-        return template.update(sql, id, tgChatId);
-    }
-
-    public void utracedLinks(Long chatId) {
-        final  String sql = "delete from chat_link where chat_id = ?";
-         template.update(sql, chatId);
-
-    }
+    List<Long> findIdByTgChatId(Long tgChatId);
 }
