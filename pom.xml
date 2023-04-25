@@ -15,6 +15,7 @@
         <module>exeptios</module>
         <module>link-parser</module>
         <module>scrapper</module>
+        <module>generate</module>
 
     </modules>
 
