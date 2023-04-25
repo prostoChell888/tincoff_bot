@@ -40,6 +40,10 @@ public class LinkTelegramBot extends TelegramBot {
         }
     }
 
+    public void sendCommand(Long id, String msg) {
+        this.execute(new SendMessage(id, msg));
+    }
+
 
 
 }

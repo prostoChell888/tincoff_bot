@@ -5,7 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import ru.tinkoff.requasts.GitHabResponse;
+import ru.tinkoff.requasts.GitHabParseResponse;
 import ru.tinkoff.requasts.ParseResponse;
 
 import java.util.stream.Stream;
@@ -29,7 +29,7 @@ class GitHabParserTest {
 
     @ParameterizedTest
     @MethodSource("giHubResponses")
-    void parse_ValidUrls_WithOutHandler(String url, GitHabResponse expectedRes) {
+    void parse_ValidUrls_WithOutHandler(String url, GitHabParseResponse expectedRes) {
         var parser = new GitHabParser();
 
         ParseResponse response = parser.parse(url);
@@ -59,11 +59,11 @@ class GitHabParserTest {
     private static Stream<Arguments> giHubResponses() {
         return Stream.of(
                 Arguments.of("https://github.com/petevg/Markdown-Edit",
-                        new GitHabResponse("petevg", "Markdown-Edit")),
+                        new GitHabParseResponse("petevg", "Markdown-Edit")),
                 Arguments.of("https://github.com/hackiftekhar/IQKeyboardManager",
-                        new GitHabResponse("hackiftekhar", "IQKeyboardManager")),
+                        new GitHabParseResponse("hackiftekhar", "IQKeyboardManager")),
                 Arguments.of("https://github.com/cocos2d/cocos2d-x",
-                        new GitHabResponse("cocos2d", "cocos2d-x"))
+                        new GitHabParseResponse("cocos2d", "cocos2d-x"))
         );
     }
 }

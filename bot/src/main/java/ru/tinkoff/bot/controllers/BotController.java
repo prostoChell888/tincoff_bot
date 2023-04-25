@@ -23,17 +23,11 @@ public class BotController {
             description = "подробное описание"
     )
     public void update(@RequestBody LinkUpdateRequest request) {
+        System.out.println("Принято сообщение об обновлении\n" + request);
         botService.update(request);
     }
 
 
 
-    //todo проверка работоспособности (удалить)
-    private final ScrapperClient scrapperClient;
 
-    //todo проверка работоспособности (удалить)
-    @PostMapping("check")
-    public void check(@RequestBody AddLinkRequest request) {
-        scrapperClient.deleteChatId(5L);
-    }
 }

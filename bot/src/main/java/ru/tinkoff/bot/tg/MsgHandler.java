@@ -26,6 +26,9 @@ public class MsgHandler {
 
     public SendMessage serveCommand(Message massage) {
         Long id = massage.chat().id();
+
+        System.out.println("====" + id + "====");
+
         User user = botRepository.getUserById(id);
 
         if (user == null) {

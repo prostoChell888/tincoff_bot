@@ -9,9 +9,14 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-
-
+    <groupId>ru.tincoff</groupId>
     <artifactId>link-parser</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>link-parser</name>
+    <description>link-parser</description>
+    <packaging>jar</packaging>
+
+
     <properties>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>

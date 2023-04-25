@@ -11,6 +11,4 @@ public sealed interface Parser permits BaseParser {
     ParseResponse parse(URI url);
 
      void setHandler(Parser handler);
-
-
 }

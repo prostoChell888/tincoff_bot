@@ -11,7 +11,6 @@ import ru.tinkoff.bot.dto.response.link.ListLinksResponse;
 
 
 @Component
-
 public class ScrapperClient {
     private final WebClient webClient;
 
@@ -48,18 +47,13 @@ public class ScrapperClient {
                 .block();
     }
 
-
-
-
     public void postChatId(Long chatId) {
         webClient.post()
                 .uri("tg-chat/{chatId}", chatId)
                 .retrieve();
     }
 
-    //todo///////////////////////////////////////////////////////////////
-    //todo///////////////////////////////////////////////////////////////
-    //todo///////////////////////////////////////////////////////////////
+
 
     public void deleteChatId(Long chatId) {
         webClient.delete()

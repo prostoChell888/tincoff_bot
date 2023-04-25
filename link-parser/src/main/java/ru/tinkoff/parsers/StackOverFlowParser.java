@@ -1,7 +1,7 @@
 package ru.tinkoff.parsers;
 
 import ru.tinkoff.requasts.ParseResponse;
-import ru.tinkoff.requasts.StackOverflowResponse;
+import ru.tinkoff.requasts.StackOverflowParseResponse;
 
 
 import java.net.URI;
@@ -16,7 +16,7 @@ public final class StackOverFlowParser extends BaseParser{
         if (url.getHost() != null && url.getHost().equals("stackoverflow.com")){
             Matcher matcher = regex.matcher(url.getPath());
             if (matcher.matches()){
-                return new StackOverflowResponse ( Integer.parseInt(matcher.group(1)));
+                return new StackOverflowParseResponse( Integer.parseInt(matcher.group(1)));
             } else {
                 return null;
             }

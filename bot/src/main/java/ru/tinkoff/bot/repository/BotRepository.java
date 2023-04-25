@@ -9,8 +9,6 @@ import java.util.HashMap;
 @Component
 public class BotRepository {
     HashMap<Long, User> chatStates = new HashMap<>();
-
-
     public User getUserById(Long id) {
         return chatStates.get(id);
     }

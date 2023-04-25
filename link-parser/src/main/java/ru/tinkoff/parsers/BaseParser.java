@@ -38,7 +38,4 @@ public sealed abstract class BaseParser implements Parser permits StackOverFlowP
         }
         return parse(uri);
     }
-
-
-
 }

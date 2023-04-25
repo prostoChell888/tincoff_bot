@@ -3,9 +3,9 @@ package ru.tinkoff;
 import ru.tinkoff.parsers.GitHabParser;
 import ru.tinkoff.parsers.Parser;
 import ru.tinkoff.parsers.StackOverFlowParser;
-import ru.tinkoff.requasts.GitHabResponse;
+import ru.tinkoff.requasts.GitHabParseResponse;
 import ru.tinkoff.requasts.ParseResponse;
-import ru.tinkoff.requasts.StackOverflowResponse;
+import ru.tinkoff.requasts.StackOverflowParseResponse;
 
 public class Example {
     public static void main(String[] args) {
@@ -29,8 +29,8 @@ public class Example {
     public static void withOutPattern() {
         GitHabParser gitHabParser = new GitHabParser();
 
-        GitHabResponse response1_1 = (GitHabResponse) gitHabParser.parse("https://github.com/sanyarnd/tinkoff-java-course-2022/");
-        GitHabResponse response1_2 = (GitHabResponse) gitHabParser.parse("https://stackoverflow.com/questions/1642028/what-is-the-operator-in-c");
+        GitHabParseResponse response1_1 = (GitHabParseResponse) gitHabParser.parse("https://github.com/sanyarnd/tinkoff-java-course-2022/");
+        GitHabParseResponse response1_2 = (GitHabParseResponse) gitHabParser.parse("https://stackoverflow.com/questions/1642028/what-is-the-operator-in-c");
 
         System.out.println(response1_1);
         System.out.println(response1_2);
@@ -38,8 +38,8 @@ public class Example {
 
         StackOverFlowParser stackOverFlowParser = new StackOverFlowParser();
 
-        StackOverflowResponse response2_1 = (StackOverflowResponse) stackOverFlowParser.parse("https://github.com/sanyarnd/tinkoff-java-course-2022/");
-        StackOverflowResponse response2_2 = (StackOverflowResponse) stackOverFlowParser.parse("https://stackoverflow.com/questions/1642028/what-is-the-operator-in-c");
+        StackOverflowParseResponse response2_1 = (StackOverflowParseResponse) stackOverFlowParser.parse("https://github.com/sanyarnd/tinkoff-java-course-2022/");
+        StackOverflowParseResponse response2_2 = (StackOverflowParseResponse) stackOverFlowParser.parse("https://stackoverflow.com/questions/1642028/what-is-the-operator-in-c");
 
         System.out.println(response2_1);
         System.out.println(response2_2);
