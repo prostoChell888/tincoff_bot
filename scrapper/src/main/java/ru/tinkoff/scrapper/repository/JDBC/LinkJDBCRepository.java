@@ -1,6 +1,7 @@
 package ru.tinkoff.scrapper.repository.JDBC;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SingleColumnRowMapper;
@@ -10,7 +11,11 @@ import ru.tinkoff.scrapper.enyity.mapers.LinkMapper;
 import ru.tinkoff.scrapper.repository.LinkRepository;
 
 
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -77,4 +82,24 @@ public  class LinkJDBCRepository implements LinkRepository {
         Integer count = template.queryForObject(sql, Integer.class, linkId, chatId);
         return count != null && count > 0;
     }
+
+    @Override
+    public void updateLinksDateTimeToNow(List<LinkEntity> links) {
+        String sql = "UPDATE link SET last_update = ? WHERE link_id IN (?)";
+
+        template.batchUpdate(sql, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                ps.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+                ps.setLong(2, links.get(i).getLinkId());
+            }
+
+            @Override
+            public int getBatchSize() {
+                return links.size();
+            }
+        });
+    }
+
+
 }

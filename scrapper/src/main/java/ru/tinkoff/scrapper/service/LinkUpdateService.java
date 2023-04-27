@@ -49,6 +49,7 @@ public class LinkUpdateService implements LinkUpdater {
                 case GitHabParseResponse response -> gitHabResponseCheckUpdate(response, links.get(i));
             }
         }
+        linkJDBCRepository.updateLinksDate(links, OffsetDateTime.now());
 
         return 0;
     }

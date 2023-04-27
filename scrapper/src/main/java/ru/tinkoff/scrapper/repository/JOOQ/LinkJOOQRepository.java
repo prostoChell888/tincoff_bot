@@ -1,7 +1,9 @@
 package ru.tinkoff.scrapper.repository.JOOQ;
 
 import lombok.RequiredArgsConstructor;
+import org.jooq.Batch;
 import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 import org.springframework.stereotype.Repository;
 import ru.tinkoff.scrapper.enyity.LinkEntity;
 import ru.tinkoff.scrapper.repository.LinkRepository;
@@ -15,6 +17,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -102,6 +106,23 @@ public class LinkJOOQRepository implements LinkRepository {
 
         return count.get(0) > 0;
     }
+
+    @Override
+    public void updateLinksDateTimeToNow(List<LinkEntity> links) {
+        List<Long> linksId = new ArrayList<>();
+        for (var link:links) {
+            if (link!= null) linksId.add(link.getLinkId());
+        }
+
+        Batch batch = create.batch(
+                DSL.update(ls)
+                        .set(ls.LAST_UPDATE, LocalDateTime.now())
+                        .where(DSL.field("id").in(linksId))
+        );
+
+        batch.execute();
+    }
+
 
     private LinkEntity fromTableToEntity(LinkRecord l) {
         l.getLastUpdate();

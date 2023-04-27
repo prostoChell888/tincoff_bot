@@ -21,4 +21,6 @@ public interface LinkRepository {
     void addLinkToChat(Long chatId, Long linkId);
 
     boolean isRecordExistsByLinkIdAndTgChatId(Long linkId, Long chatId);
+
+    void updateLinksDateTimeToNow(List<LinkEntity> links);
 }
