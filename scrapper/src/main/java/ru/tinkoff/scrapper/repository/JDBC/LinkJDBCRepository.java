@@ -3,6 +3,7 @@ package ru.tinkoff.scrapper.repository.JDBC;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.stereotype.Repository;
 import ru.tinkoff.scrapper.enyity.LinkEntity;
 import ru.tinkoff.scrapper.enyity.mapers.LinkMapper;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
-public final class LinkJDBCRepository implements LinkRepository {
+public  class LinkJDBCRepository implements LinkRepository {
     private final LinkMapper mapper = new LinkMapper();
 
 
@@ -49,7 +50,7 @@ public final class LinkJDBCRepository implements LinkRepository {
         String sql = "INSERT INTO link (link, last_update) VALUES (?, ?) returning link_id";
 
         var res = template.query(sql,  new Object[]{link, new Timestamp(System.currentTimeMillis())},
-                new DataClassRowMapper<>(Long.class));
+                new SingleColumnRowMapper<>(Long.class));
         return (res.size() > 0)? res.get(0):null;
     }
 

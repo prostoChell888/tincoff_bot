@@ -19,8 +19,7 @@ public class LinkUpdateRequest {
     @Min(value = 1, message = "id should be bigger than 0")
     Long id;
     @URL(message = "Invalid Url, Please provide a valid URL")
-    @NotEmpty(message = "url should not be Empty")
-    URI url;
+    String url;
     @NotEmpty(message = "description should not be Empty")
     String description;
     @ListOfIds
