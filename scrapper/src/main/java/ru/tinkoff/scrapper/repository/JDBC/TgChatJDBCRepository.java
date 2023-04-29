@@ -11,13 +11,15 @@ import ru.tinkoff.scrapper.repository.TgChatRepository;
 import java.util.List;
 
 
-@RequiredArgsConstructor
 @Repository
+@RequiredArgsConstructor
 public class TgChatJDBCRepository implements TgChatRepository {
 
     private final UserMapper mapper = new UserMapper();
 
     private final JdbcTemplate template;
+
+
 
     @Override
     public void add(Long tgChatId) {

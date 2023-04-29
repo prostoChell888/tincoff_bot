@@ -7,6 +7,8 @@ import ru.tincoff.exeptios.types.NotFoundException;
 import ru.tinkoff.scrapper.enyity.ChatEntity;
 import ru.tinkoff.scrapper.repository.JDBC.LinkJDBCRepository;
 import ru.tinkoff.scrapper.repository.JDBC.TgChatJDBCRepository;
+import ru.tinkoff.scrapper.repository.LinkRepository;
+import ru.tinkoff.scrapper.repository.TgChatRepository;
 import ru.tinkoff.scrapper.service.TgChatService;
 
 import java.util.List;

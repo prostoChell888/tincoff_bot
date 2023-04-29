@@ -1,9 +1,11 @@
 package ru.tinkoff.scrapper.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.tinkoff.scrapper.enyity.ChatEntity;
 
 import java.util.List;
 
+@Repository
 public interface TgChatRepository {
     void add(Long tgChatId);
 

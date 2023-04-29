@@ -18,13 +18,14 @@ import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-@RequiredArgsConstructor
 @Repository
+@RequiredArgsConstructor
 public  class LinkJDBCRepository implements LinkRepository {
     private final LinkMapper mapper = new LinkMapper();
 
-
     private final JdbcTemplate template;
+
+
 
     @Override
     public List<LinkEntity> findAll() {

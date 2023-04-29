@@ -15,6 +15,8 @@ import ru.tinkoff.scrapper.enyity.LinkEntity;
 import ru.tinkoff.scrapper.enyity.ChatEntity;
 import ru.tinkoff.scrapper.repository.JDBC.LinkJDBCRepository;
 import ru.tinkoff.scrapper.repository.JDBC.TgChatJDBCRepository;
+import ru.tinkoff.scrapper.repository.LinkRepository;
+import ru.tinkoff.scrapper.repository.TgChatRepository;
 import ru.tinkoff.scrapper.service.LinkService;
 import ru.tinkoff.scrapper.util.validation.anotations.Id;
 
@@ -23,7 +25,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+
 @Validated
 @RequiredArgsConstructor
 public class LinksJDBCService implements LinkService {
