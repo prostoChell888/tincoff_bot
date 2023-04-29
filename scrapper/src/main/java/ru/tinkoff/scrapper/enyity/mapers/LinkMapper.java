@@ -15,7 +15,7 @@ public class LinkMapper implements RowMapper<LinkEntity> {
         link.setLinkId(rs.getLong("link_id"));
         link.setLastUpdateTime(rs.getTimestamp("last_update"));
         try {
-            link.setLink(new URI(rs.getString("link")));
+            link.setLink(new URI(rs.getString("url")));
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
