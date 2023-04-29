@@ -40,19 +40,19 @@ public  class LinkJDBCRepository implements LinkRepository {
 
     @Override
     public List<LinkEntity> findAllOrderByDate() {
-        String sql = "SELECT * FROM link ORDER BY last_update DESC";
+        String sql = "SELECT * FROM link ORDER BY last_update";
         return template.query(sql, mapper);
     }
 
     @Override
     public List<LinkEntity> findByURI(String link) {
-        String sql = "SELECT * FROM link WHERE link.link = ?";
+        String sql = "SELECT * FROM link WHERE link.url = ?";
         return template.query(sql, mapper, link);
     }
 
     @Override
     public Long add(String link) {
-        String sql = "INSERT INTO link (link, last_update) VALUES (?, ?) returning link_id";
+        String sql = "INSERT INTO link (url, last_update) VALUES (?, ?) returning link_id";
 
         var res = template.query(sql,  new Object[]{link, new Timestamp(System.currentTimeMillis())},
                 new SingleColumnRowMapper<>(Long.class));
@@ -61,7 +61,7 @@ public  class LinkJDBCRepository implements LinkRepository {
 
     @Override
     public List<LinkEntity> findTrackedLinks(Long chatId) {
-        final String sql = "select link.link_id, link.link, link.last_update " +
+        final String sql = "select link.link_id, link.url, link.last_update " +
                 "from link " +
                 "join chat_link on link.link_id = chat_link.link_id " +
                 "where chat_link.chat_id = ?";
