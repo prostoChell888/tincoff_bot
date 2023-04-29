@@ -18,6 +18,6 @@ public record ApplicationConfig(@NotNull String test,
 
     public enum AccessType {
         JDBC, JPA,
-        JOOQ // если делали
+        JOOQ
     }
 }

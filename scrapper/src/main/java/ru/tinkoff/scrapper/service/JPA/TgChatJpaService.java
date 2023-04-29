@@ -22,8 +22,6 @@ public class TgChatJpaService implements TgChatService {
 
     private final TgChatJPARepository chatRepository;
 
-
-
     @Override
     public void register(Long tgChatId) {
         if (chatRepository.findByTgChatId(tgChatId).isPresent() ){

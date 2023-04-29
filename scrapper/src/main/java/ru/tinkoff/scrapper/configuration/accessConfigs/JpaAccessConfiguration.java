@@ -16,7 +16,7 @@ import ru.tinkoff.scrapper.service.LinkService;
 import ru.tinkoff.scrapper.service.TgChatService;
 
 @Configuration
-@ConditionalOnProperty(prefix = "app", name = "database-access-type", havingValue = "jpa")
+@ConditionalOnProperty(prefix = "scrapper", name = "database-access-type", havingValue = "jpa")
 public class JpaAccessConfiguration {
 
     @Bean

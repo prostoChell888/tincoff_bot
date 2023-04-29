@@ -20,7 +20,7 @@ import ru.tinkoff.scrapper.service.jdbc.LinksJDBCService;
 import ru.tinkoff.scrapper.service.jdbc.TgChatJDBCService;
 
 @Configuration
-@ConditionalOnProperty(prefix = "app", name = "database-access-type", havingValue = "jooq")
+@ConditionalOnProperty(prefix = "scrapper", name = "database-access-type", havingValue = "jooq")
 public class JooqAccessConfiguration {
 
 
