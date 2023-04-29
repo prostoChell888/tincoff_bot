@@ -13,7 +13,7 @@ import ru.tinkoff.scrapper.service.TgChatService;
 
 import java.util.List;
 
-@Service
+
 @RequiredArgsConstructor
 public class TgChatJDBCService implements TgChatService {
 

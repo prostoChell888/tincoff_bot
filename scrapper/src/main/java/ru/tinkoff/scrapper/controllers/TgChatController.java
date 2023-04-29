@@ -10,7 +10,7 @@ import ru.tinkoff.scrapper.service.jdbc.TgChatJDBCService;
 @RequestMapping("/tg-chat")
 @RequiredArgsConstructor
 public class TgChatController {
-    private final TgChatJDBCService tgChatService;
+    private final TgChatService tgChatService;
 
     @PostMapping("{id}")
     public void register(@PathVariable Long id) {
