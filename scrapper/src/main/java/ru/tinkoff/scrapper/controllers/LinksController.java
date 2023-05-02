@@ -16,7 +16,7 @@ import ru.tinkoff.scrapper.service.jdbc.LinksJDBCService;
 @RequiredArgsConstructor
 public class LinksController {
 
-    private final LinksJDBCService linksService;
+    private final LinkService linksService;
 
     @GetMapping
     public ListLinksResponse getAllTrackedLinks(@RequestHeader("Tg-Chat-Id") Long chatId){

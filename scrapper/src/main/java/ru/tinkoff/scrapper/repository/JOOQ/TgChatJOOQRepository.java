@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
+
 public class TgChatJOOQRepository implements TgChatRepository {
 
     final DSLContext create;

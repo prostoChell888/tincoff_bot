@@ -1,9 +1,11 @@
 package ru.tinkoff.scrapper.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.tinkoff.scrapper.enyity.LinkEntity;
 
 import java.util.List;
 
+@Repository
 public interface LinkRepository {
 
     List<LinkEntity> findAll();
@@ -21,4 +23,6 @@ public interface LinkRepository {
     void addLinkToChat(Long chatId, Long linkId);
 
     boolean isRecordExistsByLinkIdAndTgChatId(Long linkId, Long chatId);
+
+    void updateLinksDateTimeToNow(List<LinkEntity> links);
 }

@@ -12,7 +12,7 @@ import ru.tinkoff.scrapper.service.TgChatService;
 
 import java.util.List;
 
-@Service
+
 @RequiredArgsConstructor
 public class TgChatJOOQService  implements TgChatService {
 
@@ -20,7 +20,7 @@ public class TgChatJOOQService  implements TgChatService {
     private final TgChatJOOQRepository chatRepository;
 
 
-    private final LinkJOOQRepository linkJDBCRepository;
+    private final LinkJOOQRepository linkRepository;
 
     @Override
     public void register(Long tgChatId) {
@@ -38,7 +38,7 @@ public class TgChatJOOQService  implements TgChatService {
 
     @Override
     public List<Long> findChatByLinkId(Long linkId) {
-        if (linkJDBCRepository.findLinkById(linkId).size() !=  0) {
+        if (linkRepository.findLinkById(linkId).size() !=  0) {
             throw new BadRequestException("Чат с id" + linkId + "не найден");
         }
 

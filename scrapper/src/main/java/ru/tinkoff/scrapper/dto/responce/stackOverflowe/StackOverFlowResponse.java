@@ -14,5 +14,8 @@ public record StackOverFlowResponse(
         int viewCount,
         @JsonProperty("creation_date")
         OffsetDateTime creationDate,
+        @JsonProperty("last_activity_date")
+        OffsetDateTime lastActivityDate,
+        @JsonProperty("link")
         URI link
-        ) {}
+) {}

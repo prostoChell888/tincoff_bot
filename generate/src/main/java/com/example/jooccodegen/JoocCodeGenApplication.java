@@ -1,14 +1,9 @@
 package com.example.jooccodegen;
 
 import org.jooq.codegen.GenerationTool;
-import org.jooq.meta.jaxb.Configuration;
-import org.jooq.meta.jaxb.Database;
-import org.jooq.meta.jaxb.Generate;
-import org.jooq.meta.jaxb.Generator;
-import org.jooq.meta.jaxb.Property;
-import org.jooq.meta.jaxb.Target;
+import org.jooq.meta.jaxb.*;
 
-/////
+
 public class JoocCodeGenApplication {
 
     public static void main(String[] args) throws Exception {
@@ -47,7 +42,12 @@ public class JoocCodeGenApplication {
                                 .withDatabase(database)
                                 .withGenerate(options)
                                 .withTarget(target)
-                );
+                )
+                .withJdbc(new Jdbc()
+                        .withDriver("org.postgresql.Driver")
+                        .withUrl("jdbc:postgresql://localhost:5432/link_bot")
+                        .withUser("postgres")
+                        .withPassword("123"));
 
         GenerationTool.generate(configuration);
     }

@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Service
+
 @Validated
 @RequiredArgsConstructor
 public class LinksJOOQService implements LinkService {

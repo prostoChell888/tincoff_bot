@@ -53,19 +53,19 @@ public class LinkRecord extends UpdatableRecordImpl<LinkRecord> implements Recor
     }
 
     /**
-     * Setter for <code>LINK.LINK</code>.
+     * Setter for <code>LINK.URL</code>.
      */
-    public void setLink(@NotNull String value) {
+    public void setUrl(@NotNull String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>LINK.LINK</code>.
+     * Getter for <code>LINK.URL</code>.
      */
     @jakarta.validation.constraints.NotNull
     @Size(max = 255)
     @NotNull
-    public String getLink() {
+    public String getUrl() {
         return (String) get(1);
     }
 
@@ -120,7 +120,7 @@ public class LinkRecord extends UpdatableRecordImpl<LinkRecord> implements Recor
     @Override
     @NotNull
     public Field<String> field2() {
-        return Link.LINK.LINK_;
+        return Link.LINK.URL;
     }
 
     @Override
@@ -138,7 +138,7 @@ public class LinkRecord extends UpdatableRecordImpl<LinkRecord> implements Recor
     @Override
     @NotNull
     public String component2() {
-        return getLink();
+        return getUrl();
     }
 
     @Override
@@ -156,7 +156,7 @@ public class LinkRecord extends UpdatableRecordImpl<LinkRecord> implements Recor
     @Override
     @NotNull
     public String value2() {
-        return getLink();
+        return getUrl();
     }
 
     @Override
@@ -175,7 +175,7 @@ public class LinkRecord extends UpdatableRecordImpl<LinkRecord> implements Recor
     @Override
     @NotNull
     public LinkRecord value2(@NotNull String value) {
-        setLink(value);
+        setUrl(value);
         return this;
     }
 
@@ -209,12 +209,12 @@ public class LinkRecord extends UpdatableRecordImpl<LinkRecord> implements Recor
     /**
      * Create a detached, initialised LinkRecord
      */
-    @ConstructorProperties({ "linkId", "link", "lastUpdate" })
-    public LinkRecord(@Nullable Long linkId, @NotNull String link, @NotNull LocalDateTime lastUpdate) {
+    @ConstructorProperties({ "linkId", "url", "lastUpdate" })
+    public LinkRecord(@Nullable Long linkId, @NotNull String url, @NotNull LocalDateTime lastUpdate) {
         super(Link.LINK);
 
         setLinkId(linkId);
-        setLink(link);
+        setUrl(url);
         setLastUpdate(lastUpdate);
     }
 
@@ -226,7 +226,7 @@ public class LinkRecord extends UpdatableRecordImpl<LinkRecord> implements Recor
 
         if (value != null) {
             setLinkId(value.getLinkId());
-            setLink(value.getLink());
+            setUrl(value.getUrl());
             setLastUpdate(value.getLastUpdate());
         }
     }

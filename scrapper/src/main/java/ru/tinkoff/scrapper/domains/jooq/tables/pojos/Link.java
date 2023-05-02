@@ -32,25 +32,25 @@ public class Link implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long linkId;
-    private String link;
+    private String url;
     private LocalDateTime lastUpdate;
 
     public Link() {}
 
     public Link(Link value) {
         this.linkId = value.linkId;
-        this.link = value.link;
+        this.url = value.url;
         this.lastUpdate = value.lastUpdate;
     }
 
-    @ConstructorProperties({ "linkId", "link", "lastUpdate" })
+    @ConstructorProperties({ "linkId", "url", "lastUpdate" })
     public Link(
         @Nullable Long linkId,
-        @NotNull String link,
+        @NotNull String url,
         @NotNull LocalDateTime lastUpdate
     ) {
         this.linkId = linkId;
-        this.link = link;
+        this.url = url;
         this.lastUpdate = lastUpdate;
     }
 
@@ -70,20 +70,20 @@ public class Link implements Serializable {
     }
 
     /**
-     * Getter for <code>LINK.LINK</code>.
+     * Getter for <code>LINK.URL</code>.
      */
     @jakarta.validation.constraints.NotNull
     @Size(max = 255)
     @NotNull
-    public String getLink() {
-        return this.link;
+    public String getUrl() {
+        return this.url;
     }
 
     /**
-     * Setter for <code>LINK.LINK</code>.
+     * Setter for <code>LINK.URL</code>.
      */
-    public void setLink(@NotNull String link) {
-        this.link = link;
+    public void setUrl(@NotNull String url) {
+        this.url = url;
     }
 
     /**
@@ -117,11 +117,11 @@ public class Link implements Serializable {
         }
         else if (!this.linkId.equals(other.linkId))
             return false;
-        if (this.link == null) {
-            if (other.link != null)
+        if (this.url == null) {
+            if (other.url != null)
                 return false;
         }
-        else if (!this.link.equals(other.link))
+        else if (!this.url.equals(other.url))
             return false;
         if (this.lastUpdate == null) {
             if (other.lastUpdate != null)
@@ -137,7 +137,7 @@ public class Link implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((this.linkId == null) ? 0 : this.linkId.hashCode());
-        result = prime * result + ((this.link == null) ? 0 : this.link.hashCode());
+        result = prime * result + ((this.url == null) ? 0 : this.url.hashCode());
         result = prime * result + ((this.lastUpdate == null) ? 0 : this.lastUpdate.hashCode());
         return result;
     }
@@ -147,7 +147,7 @@ public class Link implements Serializable {
         StringBuilder sb = new StringBuilder("Link (");
 
         sb.append(linkId);
-        sb.append(", ").append(link);
+        sb.append(", ").append(url);
         sb.append(", ").append(lastUpdate);
 
         sb.append(")");
