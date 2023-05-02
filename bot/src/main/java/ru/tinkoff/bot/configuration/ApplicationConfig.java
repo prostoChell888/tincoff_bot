@@ -10,7 +10,8 @@ import org.springframework.validation.annotation.Validated;
 public record ApplicationConfig(@NotNull String test,
                                 @NotNull String token,
                                 @NotNull String baseUrl,
-                                @NotNull RabbitMQParam rabbitMQParam) {
+                                @NotNull RabbitMQParam rabbitMQParam,
+                                @NotNull boolean useQueue) {
 
     public record RabbitMQParam(String directExchange, String queue, String routingKey) {
     }
