@@ -13,10 +13,10 @@ import ru.tinkoff.scrapper.util.Scheduler;
 public record ApplicationConfig(@NotNull String test,
                                 @NotNull Scheduler scheduler,
                                 @NotNull AccessType databaseAccessType,
-                                @NotNull RabbitMQParam rabbitMQParam) {
+                                @NotNull RabbitMQParam rabbitMQParam,
+                                @NotNull boolean useQueue) {
     public enum AccessType {
-        JDBC, JPA,
-        JOOQ
+        JDBC, JPA, JOOQ
     }
 
     public  record RabbitMQParam(String directExchange,
