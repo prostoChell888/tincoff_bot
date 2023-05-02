@@ -19,7 +19,8 @@ public record ApplicationConfig(@NotNull String test,
         JOOQ
     }
 
-    public record RabbitMQParam(String directExchange, String queue, String routingKey){}
-
+    public  record RabbitMQParam(String directExchange,
+                                 String queue,
+                                 String routingKey){}
 
 }
