@@ -9,11 +9,12 @@ import ru.tinkoff.scrapper.dto.request.LinkUpdateRequest;
 
 @Service
 @RequiredArgsConstructor
-public class ScrapperQueueProducer {
+public class ScrapperQueueProducer implements UpdateSender {
 
     final RabbitTemplate template;
     final ApplicationConfig appConfig;
 
+    @Override
     public void send(LinkUpdateRequest update) {
         template.convertAndSend(appConfig.rabbitMQParam().directExchange(),
                 appConfig.rabbitMQParam().queue(),
