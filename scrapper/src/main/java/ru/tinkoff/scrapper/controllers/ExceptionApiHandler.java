@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import ru.tincoff.exeptios.types.BadRequestException;
-import ru.tincoff.exeptios.types.NotFoundException;
+import ru.tincoff.exeptios.BadRequestException;
+import ru.tincoff.exeptios.NotFoundException;
 import ru.tinkoff.scrapper.dto.responce.ApiErrorResponse;
 
 

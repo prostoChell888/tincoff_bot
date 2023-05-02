@@ -2,67 +2,39 @@ package ru.tinkoff.scrapper.controllers;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import ru.tincoff.exeptios.types.BadRequestException;
-import ru.tincoff.exeptios.types.NotFoundException;
-import ru.tinkoff.scrapper.clients.GitHubClient;
-import ru.tinkoff.scrapper.clients.StackOverflowClient;
 import ru.tinkoff.scrapper.dto.request.AddLinkRequest;
-import ru.tinkoff.scrapper.dto.request.GitGubRepRequest;
 import ru.tinkoff.scrapper.dto.responce.link.LinkResponse;
 import ru.tinkoff.scrapper.dto.responce.link.ListLinksResponse;
-import ru.tinkoff.scrapper.service.GitHubService;
-import ru.tinkoff.scrapper.service.LinksService;
-import ru.tinkoff.scrapper.service.StackOverFlowService;
+import ru.tinkoff.scrapper.repository.JDBC.LinkJDBCRepository;
+import ru.tinkoff.scrapper.service.LinkService;
+import ru.tinkoff.scrapper.service.jdbc.LinksJDBCService;
 
 @RestController
 @RequestMapping("/links")
 @RequiredArgsConstructor
 public class LinksController {
 
-
-
-    private final StackOverFlowService SOservice;
-
-    private final GitHubService gitHubService;
-
-    private final LinksService linksService;
+    private final LinksJDBCService linksService;
 
     @GetMapping
-    public ResponseEntity<ListLinksResponse> getAllTrackedLinks(@RequestHeader("Tg-Chat-Id") Long chatId) {
-        if (chatId.intValue() % 2 == 0) throw new BadRequestException("четный id");
+    public ListLinksResponse getAllTrackedLinks(@RequestHeader("Tg-Chat-Id") Long chatId){
 
-        return linksService.getAllTrackedLinks(chatId);
+        return linksService.listAll(chatId);
     }
 
     @PostMapping
-    public ResponseEntity<LinkResponse> addLink(@RequestHeader("Tg-Chat-Id") Long chatId, @RequestBody AddLinkRequest request) {
-        if (chatId.intValue() % 2 == 0) throw new BadRequestException("четный id");
-
-        return linksService.addLink(chatId, request);
+    public LinkResponse addLink(@RequestHeader("Tg-Chat-Id") Long chatId,
+                                @RequestBody AddLinkRequest request) {
+        return linksService.add(chatId, request);
     }
 
     @DeleteMapping
-    public ResponseEntity<LinkResponse> delLink(@RequestHeader("Tg-Chat-Id") Long chatId, @RequestBody AddLinkRequest request) {
-        if (chatId.intValue() % 3 == 0) throw new BadRequestException("четный id");
-        if (chatId.intValue() % 3 == 1) throw new NotFoundException("четный id");
+    public void delLink(@RequestHeader("Tg-Chat-Id") Long chatId) {
 
-
-        return linksService.delLink(chatId, request);
+         linksService.remove(chatId);
     }
-
-    @GetMapping("test")
-    public Object test() {
-
-//        return gitHubService.getRepInfo(new GitGubRepRequest("kubernetes", "kubernetes"));
-       return SOservice.getQuestionInfo(49034588L);
-
-    }
-
-
 }
 
 

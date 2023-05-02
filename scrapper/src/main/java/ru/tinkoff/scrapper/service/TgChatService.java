@@ -1,23 +1,22 @@
 package ru.tinkoff.scrapper.service;
 
+import ru.tinkoff.scrapper.enyity.ChatEntity;
 
-import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
-import ru.tincoff.exeptios.types.BadRequestException;
-import ru.tinkoff.scrapper.util.validation.anotations.Id;
+import java.util.List;
 
-@Service
-@Validated
-public class TgChatService {
-    public void addChat(@Id Long id) {
-        if (id.intValue() % 2 == 0) throw new BadRequestException("четный id");
+public interface TgChatService {
 
+    void register(Long tgChatId);
 
-    }
+    Long unregister(Long tgChatId);
 
-    public void delChat(@Id Long id) {
-        if (id.intValue() % 2 == 0) throw new BadRequestException("четный id");
+    List<ChatEntity> findAll();
+
+    List<Long> findChatByLinkId(Long linkid);
 
 
-    }
+    Long removeById(Long chatId);
+
+    Long updateById(Long id, Long tgChatId);
+
 }

@@ -20,6 +20,10 @@ public  class ClientFactory {
                         .build();
     }
 
+
+    public static BotClient createBotClient(String url) {
+        return getHttpServiceProxyFactory(url).createClient(BotClient.class);
+    }
     public static GitHubClient createGitHubClient(String url) {
           return getHttpServiceProxyFactory(url).createClient(GitHubClient.class);
     }
