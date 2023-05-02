@@ -8,7 +8,6 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 import ru.tinkoff.parsers.Parser;
 import ru.tinkoff.requasts.GitHabParseResponse;
 import ru.tinkoff.requasts.StackOverflowParseResponse;
-import ru.tinkoff.scrapper.clients.BotClient;
 import ru.tinkoff.scrapper.clients.GitHubClient;
 import ru.tinkoff.scrapper.clients.StackOverflowClient;
 import ru.tinkoff.scrapper.dto.request.LinkUpdateRequest;
@@ -29,7 +28,7 @@ import java.util.List;
 public class LinkUpdateService implements LinkUpdater {
     private final Parser parser;
     private final GitHubClient gitHubClient;
-    private final BotClient botClient;
+    private final UpdateSender updateSender;
     private final StackOverflowClient stackOverflowClient;
     private final LinkJDBCRepository linkRepository;
 
@@ -143,7 +142,7 @@ public class LinkUpdateService implements LinkUpdater {
 
     private void sendMsgToBot(LinkUpdateRequest response) {
         try {
-            botClient.sendUpdate(response);
+            updateSender.send(response);
             System.out.println("send msg to bot");
         } catch (Exception e) {
             System.out.println("Error updating link " + response.getUrl() + e.getMessage());

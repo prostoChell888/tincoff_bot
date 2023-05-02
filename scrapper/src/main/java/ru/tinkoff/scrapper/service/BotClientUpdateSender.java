@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.tinkoff.scrapper.clients.BotClient;
 import ru.tinkoff.scrapper.dto.request.LinkUpdateRequest;
 
-@Service
+
 @RequiredArgsConstructor
 public class BotClientUpdateSender implements UpdateSender{
 

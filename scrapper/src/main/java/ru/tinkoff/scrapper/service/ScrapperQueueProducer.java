@@ -3,11 +3,12 @@ package ru.tinkoff.scrapper.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ru.tinkoff.scrapper.configuration.ApplicationConfig;
 import ru.tinkoff.scrapper.dto.request.LinkUpdateRequest;
 
-@Service
+
 @RequiredArgsConstructor
 public class ScrapperQueueProducer implements UpdateSender {
 
