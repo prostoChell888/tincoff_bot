@@ -6,7 +6,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import ru.tinkoff.bot.dto.request.LinkUpdateRequest;
 
 
-@RabbitListener(queues = "${scrapper.scrapper-queue.name}")
+@RabbitListener(queues = "${scrapper.rabbitMQParam.queue}")
 @RequiredArgsConstructor
 public class ScrapperQueueListener {
 
