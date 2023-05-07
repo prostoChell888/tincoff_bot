@@ -125,7 +125,7 @@ public class LinkUpdateService implements LinkUpdater {
     }
 
     private String showEvents(DTOGitHubEventResponse[] events, LinkEntity lastUpdateTime) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("Info:\n");
         if (events != null && events.length != 0) {
             for (var event : events) {
                 if (event.getCreated_at().isAfter(OffsetDateTime.ofInstant(lastUpdateTime.getLastUpdateTime()

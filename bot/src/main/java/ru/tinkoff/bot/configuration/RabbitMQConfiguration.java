@@ -20,26 +20,26 @@ import java.util.Map;
 public class RabbitMQConfiguration {
 
     @Bean
-    DirectExchange directExchange(ApplicationConfig config) {
-        return new DirectExchange(config.rabbitMQParam().directExchange());
+    DirectExchange deadLetterDirectExchange(ApplicationConfig config) {
+        return new DirectExchange(config.rabbitMQParam().directExchange() + ".dlx", true, false);
     }
 
     @Bean
-    public Queue queue(ApplicationConfig config) {
-        return new Queue(config.rabbitMQParam().queue());
+    public Queue deadLetterQueue(ApplicationConfig config) {
+        return new Queue(config.rabbitMQParam().queue() + ".dlq");
     }
 
     @Bean
-    public Binding binding(ApplicationConfig config) {
-        return BindingBuilder.bind(queue(config))
-                .to(directExchange(config))
+    public Binding deadLetterBinding(ApplicationConfig config) {
+        return BindingBuilder
+                .bind(deadLetterQueue(config))
+                .to(deadLetterDirectExchange(config))
                 .with(config.rabbitMQParam().routingKey());
     }
 
 
-
     @Bean
-    public ClassMapper classMapper(){
+    public ClassMapper classMapper() {
         Map<String, Class<?>> mappings = new HashMap<>();
         mappings.put("ru.tinkoff.scrapper.dto.request.LinkUpdateRequest", LinkUpdateRequest.class);
 
@@ -51,8 +51,8 @@ public class RabbitMQConfiguration {
     }
 
     @Bean
-    public MessageConverter jsonMessageConverter(ClassMapper classMapper){
-        Jackson2JsonMessageConverter jsonConverter=new Jackson2JsonMessageConverter();
+    public MessageConverter jsonMessageConverter(ClassMapper classMapper) {
+        Jackson2JsonMessageConverter jsonConverter = new Jackson2JsonMessageConverter();
         jsonConverter.setClassMapper(classMapper);
         return jsonConverter;
     }

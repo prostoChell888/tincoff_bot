@@ -1,10 +1,7 @@
 package ru.tinkoff.scrapper.configuration;
 
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
@@ -12,20 +9,24 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfiguration {
-
     @Bean
-    DirectExchange directExchange(ApplicationConfig config) {
-        return new DirectExchange(config.rabbitMQParam().directExchange());
+    DirectExchange directExchange(ApplicationConfig appConfig) {
+        return new DirectExchange(appConfig.rabbitMQParam().directExchange(), true, false);
     }
 
     @Bean
-    public Queue queue(ApplicationConfig config) {
-        return new Queue(config.rabbitMQParam().queue());
+    Queue queue(ApplicationConfig appConfig) {
+        return QueueBuilder
+                .durable(appConfig.rabbitMQParam().queue())
+                .withArgument("x-dead-letter-exchange", appConfig.rabbitMQParam().queue() + ".dlx")
+                .withArgument("x-dead-letter-routing-key", appConfig.rabbitMQParam().queue() + ".dlq")
+                .build();
     }
 
     @Bean
     public Binding binding(ApplicationConfig config) {
-        return BindingBuilder.bind(queue(config))
+        return BindingBuilder
+                .bind(queue(config))
                 .to(directExchange(config))
                 .with(config.rabbitMQParam().routingKey());
     }

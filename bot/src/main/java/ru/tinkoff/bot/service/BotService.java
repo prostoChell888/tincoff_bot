@@ -7,7 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import ru.tinkoff.bot.dto.request.LinkUpdateRequest;
 import ru.tinkoff.bot.tg.LinkTelegramBot;
 
-@Validated
+//@Validated
 @Service
 @AllArgsConstructor
 public class BotService {
