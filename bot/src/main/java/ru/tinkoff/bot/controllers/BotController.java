@@ -15,17 +15,17 @@ import ru.tinkoff.bot.service.BotService;
 public class BotController {
     private final BotService botService;
 
-    @PostMapping
-    @Operation(
-            tags = {"links"},
-            operationId = "updateLink",
-            summary = "кратокое описани",
-            description = "подробное описание"
-    )
-    public void update(@RequestBody LinkUpdateRequest request) {
-        System.out.println("Принято сообщение об обновлении\n" + request);
-        botService.update(request);
-    }
+//    @PostMapping
+//    @Operation(
+//            tags = {"links"},
+//            operationId = "updateLink",
+//            summary = "кратокое описани",
+//            description = "подробное описание"
+//    )
+//    public void update(@RequestBody LinkUpdateRequest request) {
+//        System.out.println("Принято сообщение об обновлении\n" + request);
+//        botService.update(request);
+//    }
 
 
 

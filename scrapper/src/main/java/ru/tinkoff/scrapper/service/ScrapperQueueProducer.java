@@ -18,7 +18,7 @@ public class ScrapperQueueProducer implements UpdateSender {
     @Override
     public void send(LinkUpdateRequest update) {
         template.convertAndSend(appConfig.rabbitMQParam().directExchange(),
-                appConfig.rabbitMQParam().queue(),
+                appConfig.rabbitMQParam().routingKey(),
                 update);
     }
 }

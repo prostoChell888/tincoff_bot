@@ -28,7 +28,7 @@ import java.util.List;
 public class LinkUpdateService implements LinkUpdater {
     private final Parser parser;
     private final GitHubClient gitHubClient;
-    private final UpdateSender updateSender;
+    private final ScrapperQueueProducer updateSender;
     private final StackOverflowClient stackOverflowClient;
     private final LinkJDBCRepository linkRepository;
 

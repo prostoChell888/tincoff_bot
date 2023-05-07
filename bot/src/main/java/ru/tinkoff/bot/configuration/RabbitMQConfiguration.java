@@ -36,18 +36,16 @@ public class RabbitMQConfiguration {
                 .with(config.rabbitMQParam().routingKey());
     }
 
-    @Bean
-    public MessageConverter jsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
-    }
+
 
     @Bean
     public ClassMapper classMapper(){
         Map<String, Class<?>> mappings = new HashMap<>();
-        mappings.put("ru.tinkoff.bot.dto.request.LinkUpdateRequest", LinkUpdateRequest.class);
+        mappings.put("ru.tinkoff.scrapper.dto.request.LinkUpdateRequest", LinkUpdateRequest.class);
 
         DefaultClassMapper classMapper = new DefaultClassMapper();
         classMapper.setTrustedPackages("ru.tinkoff.bot.dto.request.*");
+
         classMapper.setIdClassMapping(mappings);
         return classMapper;
     }

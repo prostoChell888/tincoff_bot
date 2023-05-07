@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.URL;
 import ru.tinkoff.bot.util.validation.ListOfIds;
 
@@ -14,6 +16,8 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
+@Setter
+@NoArgsConstructor
 public class LinkUpdateRequest {
     @NotNull(message = "id should not be empty")
     @Min(value = 1, message = "id should be bigger than 0")

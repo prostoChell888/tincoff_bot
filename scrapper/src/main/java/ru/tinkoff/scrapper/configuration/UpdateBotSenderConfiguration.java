@@ -9,7 +9,7 @@ import ru.tinkoff.scrapper.service.BotClientUpdateSender;
 import ru.tinkoff.scrapper.service.UpdateSender;
 
 @Configuration
-@ConditionalOnProperty(prefix = "scrapper", name = "useQueue", havingValue = "true")
+@ConditionalOnProperty(prefix = "scrapper", name = "useQueue", havingValue = "false")
 public class UpdateBotSenderConfiguration {
 
     @Bean
