@@ -1,0 +1,63 @@
+name: build-scrapper
+
+on:
+  push:
+    paths:
+      - '.github/workflows/scrapper.yml'
+      - 'scraper/**'
+      - 'scrapper/**'
+
+
+
+jobs:
+
+  checkstyle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: maven
+      - name: Maven checkstyle scrapper
+        run: mvn -pl scrapper -am checkstyle:check
+
+
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: maven
+
+      - name: Maven package scrapper
+        run: mvn package -pl scrapper -am
+
+      - name: Build Docker Image
+        run: docker build scrapper -t image-bot
+
+
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{secrets.DOCKER_HUB_USERNAME}}
+          password: ${{secrets.DOCKER_HUB_TOKEN}}
+
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          context: scrapper/.
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{secrets.DOCKER_HUB_USERNAME}}/tincoff_scrapper:latest
