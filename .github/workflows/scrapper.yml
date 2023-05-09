@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/scrapper.yml'
       - 'scraper/**'
+      - 'scrapper/**'
 
 jobs:
   build:
