@@ -2,6 +2,6 @@ FROM openjdk:17-jdk
 
 WORKDIR /app
 
-COPY target/scrapper-0.0.1-SNAPSHOT.jar /app/scrapper.jar
+COPY target/scraper-0.0.1-SNAPSHOT.jar /app/scraper.jar
 
-CMD ["java", "-jar", "scrapper.jar"]
+CMD ["java", "-jar", "scraper.jar"]
