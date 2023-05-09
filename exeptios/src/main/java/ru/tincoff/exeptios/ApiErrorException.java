@@ -1,9 +1,11 @@
 package ru.tincoff.exeptios;
 
-public class ApiErrorException extends RuntimeException
-{
-    public ApiErrorException(String message)
-    {
+
+/**
+ * Ошибка во время исполния
+ */
+public class ApiErrorException extends RuntimeException {
+    public ApiErrorException(final String message) {
         super(message);
     }
 }

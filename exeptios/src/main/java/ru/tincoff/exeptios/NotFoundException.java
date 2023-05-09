@@ -1,7 +1,11 @@
 package ru.tincoff.exeptios;
 
-    public class NotFoundException extends RuntimeException{
-        public NotFoundException(String message) {
-            super(message);
-        }
+
+/**
+ * Ошибка при не нахождении нужного элемента
+ */
+public class NotFoundException extends RuntimeException {
+    public NotFoundException(final String message) {
+        super(message);
     }
+}
