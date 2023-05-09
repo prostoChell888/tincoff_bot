@@ -38,7 +38,7 @@ jobs:
       - name: Push to Docker Hub
         uses: docker/build-push-action@v2
         with:
-          context: scraper/.
+          context: scrapper/.
           dockerfile: Dockerfile
           push: true
-          tags: ${{secrets.DOCKER_HUB_USERNAME}}/scrapper_for_bot:latest
+          tags: ${{secrets.DOCKER_HUB_USERNAME}}/tincoff_scrapper:latest
