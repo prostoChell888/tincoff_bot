@@ -22,3 +22,10 @@ jobs:
 
       - name: Maven package bot
         run: mvn package -pl bot -am
+
+      - name: Build Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          dockerfile: Dockerfile
+          push: false
