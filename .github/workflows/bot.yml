@@ -6,6 +6,7 @@ on:
       - '.github/workflows/bot.yml'
       - 'bot/**'
 
+
 jobs:
   build:
     name: Build bot
