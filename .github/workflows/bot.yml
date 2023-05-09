@@ -38,4 +38,4 @@ jobs:
           context: bot/.
           dockerfile: Dockerfile
           push: true
-          tags: ${{secrets.DOCKER_HUB_USERNAME}}/train_git_hub_actions:latest
+          tags: ${{secrets.DOCKER_HUB_USERNAME}}/tincoff_bot:latest
